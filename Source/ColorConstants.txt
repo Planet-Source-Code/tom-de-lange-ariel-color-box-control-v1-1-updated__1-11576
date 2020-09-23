@@ -1,0 +1,27 @@
+vbScrollBars 		&H80000000 Scroll bar color 
+vbDesktop 		&H80000001 Desktop color 
+vbActiveTitleBar 	&H80000002 Color of the title bar for the active window 
+vbInactiveTitleBar 	&H80000003 Color of the title bar for the inactive window 
+vbMenuBar 		&H80000004 Menu background color 
+vbWindowBackground 	&H80000005 Window background color 
+vbWindowFrame 		&H80000006 Window frame color 
+vbMenuText 		&H80000007 Color of text on menus 
+vbWindowText 		&H80000008 Color of text in windows 
+vbTitleBarText 		&H80000009 Color of text in caption, size box, and scroll arrow 
+vbActiveBorder 		&H8000000A Border color of active window 
+vbInactiveBorder 	&H8000000B Border color of inactive window 
+vbApplicationWorkspace 	&H8000000C Background color of MDI interface 
+vbHighlight 		&H8000000D Background color of items selected in a control 
+vbHighlightText 	&H8000000E Text color of items selected in a control 
+vbButtonFace 		&H8000000F Color of shading on the face of command buttons 
+vbButtonShadow 		&H80000010 Color of shading on the edge of command buttons 
+vbGrayText 		&H80000011 Grayed (disabled) text 
+vbButtonText 		&H80000012 Text color on push buttons 
+vbInactiveCaptionText 	&H80000013 Color of text in an inactive caption 
+vb3DHighlight 		&H80000014 Highlight color for 3D display elements 
+vb3DDKShadow 		&H80000015 Darkest shadow color for 3D display elements 
+vb3DLight 		&H80000016 Second lightest of the 3D colors after vb3Dhighlight 
+vb3DFace 		&H8000000F Color of text face 
+vb3Dshadow 		&H80000010 Color of text shadow 
+vbInfoText 		&H80000017 Color of text in ToolTips 
+vbInfoBackground 	&H80000018 Background color of ToolTips 
