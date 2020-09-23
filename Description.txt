@@ -1,0 +1,7 @@
+Ariel ColorBox Control V1.1 (Updated)
+'------------------------------------
+A popup color selector active-x control, similar to a combobox, featuring 12 different palettes, and 2 color selection events: Click() and Change(). The popup window can be disabled, in which case the popup() event may be used to substitute your own color selection code, or access to the common windows dialog. Hue selection is done through mouse hovering using custom timer class. Credits to various PSC contributors as listed in the text file. Uses 12 API functions. Full source included - well commented.
+V1.1 now includes hWnd property.
+
+Tom de Lange
+tomdl@attglobal.net

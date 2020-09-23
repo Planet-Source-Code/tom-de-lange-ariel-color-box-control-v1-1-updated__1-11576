@@ -1,0 +1,119 @@
+--------------------------------------------------------------------
+Module     : ArielColorBox
+Description: Ariel Color Box ActiveX Control
+Version    : V1.1 Sep 2000
+Release    : VB6 SP4
+Copyright  : © T De Lange, 2000
+             Asserts the right to be identified as the original
+             author. Source code may be used freely, provided
+             proper credits are given. You may not claim ownership
+             unless you have substantially altered the general
+             usage, features and/or outer look/feel.
+	     (Please guys, a lot of time went into this, give me
+             the credit, that's why we do these things!)
+	     BTW - a few votes are welcome!
+	     Finally, if you do change the control, or upgrade it,
+             e-mail me your implementation!
+E-Mail	   : tomdl@attglobal.net
+             Please mail comments and criticism
+--------------------------------------------------------------------
+Description
+--------------------------------------------------------------------
+A popup color selector active-x control, similar to a combobox, 
+featuring 12 different palettes, and 2 color selection events:
+Click() and Change(). The popup window can be disabled, in which case
+the popup() event may be used to substitute your own color selection
+code, or access to the common windows dialog. Hue selection is done
+through mouse hovering using custom timer class. Credits to various
+PSC contributors as listed in the text file. Uses 12 API functions. 
+Full source included - well commented.
+V1.1 now includes hWnd property.
+
+--------------------------------------------------------------------
+History
+--------------------------------------------------------------------
+V1.0	Sep 00	Original release
+V1.1	Sep 00  With hWnd property (thanks Ross McCawley!)
+
+--------------------------------------------------------------------
+Credits (all from www.planet-source-code.com except where noted)
+--------------------------------------------------------------------
+a) Timer Class: Riaan Aspeling, Johan Lambert, Mitch Mooney
+b) Brian Gillham, http:www.failsafe.co.za, MailTo:Brian@FailSafe.co.za
+   for his basic SafeCTX control examples, published on www.vbcode.com
+   Especially his use of setting the popupwindow parent to the screen,
+   mouse capturing and cancel key capturing were valuable.
+
+--------------------------------------------------------------------
+User Features
+--------------------------------------------------------------------
+a) The color selected in the popupwindow is painted in the edit box
+   of the control, and the name of the color displayed to the right
+   (SelectedColor and Text properties).
+b) Selected color can also be changed programmatically. In this case
+   the color provided is matched with the current pallette and the
+   closest match returned, through HLS comparison.
+c) The following palettes have been defined:
+   ap8x2, ap9x3, ap8x8, ap16x8, ap24x8, ap24x10, ap8x4x4, ap8x8x6, 
+   ap12x6x6, ap16x8x6, ap24x8x6 and ap32x8x6
+   Generally, the first number refers to the number of hues, the second to
+   the number of luminescence (brightness) options, and where given, the
+   third number refers to the number of saturation options (level of greyness)
+d) Where three digit palettes are defined, two sets of color boxes are drawn in
+   the popup window, hues on the left and a palette of lum/sat values on the right
+   Mouse hovering is used to select the current hue in which the lum/sat boxes are
+   drawn.
+e) The popup window may be disabled by setting the popupenabled property to false.
+   In this case, the developer may substitute his/her own code by reacting on the
+   popup() event, which is triggered when the dropdown button is clicked.
+f) When selecting a color on the popup palette, the activecolor property is 
+   updated and the Changed() event is triggered.
+g) Upon closing of the popupwindow, the selectedcolor property is updated and
+   the Click() event is triggered.
+
+--------------------------------------------------------------------
+Implementation Features
+--------------------------------------------------------------------
+a) All images are drawn using API and picturebox.line() functions
+b) The only constituent control used is the popup window, a picturebox
+c) While open, the popup picturebox captures the mouse and the
+   default cancel (Esc) key.
+d) Hovering is implemented through a userdefined timer class, using
+   an API function (source code included).
+e) The parent of the picturebox is set to screen in order to make it
+   visible all the time
+
+
+--------------------------------------------------------------------
+Event Declarations:
+--------------------------------------------------------------------
+Public Event Click()
+Public Event Change(NewActiveColor As Long)
+Public Event DblClick() 
+Public Event Popup()    
+
+--------------------------------------------------------------------
+Api Function Declarations
+--------------------------------------------------------------------
+Function MoveToEx Lib "gdi32" (ByVal hDc As Long, ByVal x As Long, ByVal y As Long, lpPoint As PointApi) As Long
+Function LineTo Lib "gdi32" (ByVal hDc As Long, ByVal x As Long, ByVal y As Long) As Long
+Function DrawEdge Lib "user32" (ByVal hDc As Long, qrc As Rect, ByVal edge As Long, ByVal grfFlags As Long) As Long
+Function PtInRect Lib "user32" (lpRect As Rect, ByVal x As Long, ByVal y As Long) As Long
+Function SetParent Lib "user32" (ByVal hWndChild As Long, ByVal hWndNewParent As Long) As Long
+Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+Function SetCapture Lib "user32" (ByVal hwnd As Long) As Long
+Function GetCapture Lib "user32" () As Long
+Function ReleaseCapture Lib "user32" () As Long
+Function GetWindowRect Lib "user32" (ByVal hwnd As Long, lpRect As Rect) As Long
+Function GetClientRect Lib "user32" (ByVal hwnd As Long, lpRect As Rect) As Long
+Function GetFocus Lib "user32" () As Long
+
+--------------------------------------------------------------------
+Test Program
+--------------------------------------------------------------------
+A test program is included and requires the following controls:
+a) Microsoft Common Dialog Control 6.0 (SP3)  (color selector)
+b) Microsoft Windows Common Control 5.0 (SP2) (slider control)
+
+A second form demonstrates the use of Hue/Sat/Lum comversion
+
